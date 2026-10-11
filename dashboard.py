@@ -21,10 +21,11 @@ warnings.filterwarnings('ignore')
 def load_assets():
     preprocessor = joblib.load('preprocessor.joblib')
     model = joblib.load('xgboost_model.joblib')
-    explainer = joblib.load('shap_explainer.joblib')
+    
+    # Remplacer joblib.load par la création directe de l'explainer SHAP
+    explainer = shap.TreeExplainer(model)
+    
     return preprocessor, model, explainer
-
-preprocessor, model, explainer = load_assets()
 
 # 2. CONFIGURATION DE LA PAGE STREAMLIT
 
